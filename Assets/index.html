@@ -9,49 +9,86 @@
     <title>Weather Dashboard</title>
 </head>
 <body>
-
+    
     <header class="text-center w-100 bg-info font-weight-bold">Weather Dashboard</header>
-    <div id="search"class="input-group mb-3">
+    <!-- SEARCH BAR -->
+    <div id="search"class="input-group mb-3 w-25">
         <div class="input-group-prepend">
-          <button class="btn btn-outline-secondary" type="button">Button</button>
+          <button class="btn btn-outline-secondary" type="button">Search</button>
         </div>
         <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
     </div>
-    <div id="todayWeather"class="card">
-        <div class="card-body">
-          This is some text within a card body.
-        </div>
+    <!-- TODAYS WEATHER -->
+    <div class="">
+      <div id="todayWeather"class="card w-50 m-4">
+          <div class="card-body ">
+            <h1 id="todayCity">City and Date</h1>
+            <p id="todayTemp">temp</p>
+            <p id="todayWind">Wind</p>
+            <p id="todayHumidity">humidity</p>
+            <p id="todayUv">uv index</p>
+          
+          </div>
+      </div>
     </div>
-    <div id="cityHistory"class="card" style="width: 18rem;">
+    <!-- SEARCH HISTORY LIST -->
+    <div id="cityHistory"class="card w-25 text-center" style="width: 18rem;">
         <ul class="list-group list-group-flush">
           <li class="list-group-item">Cras justo odio</li>
           <li class="list-group-item">Dapibus ac facilisis in</li>
           <li class="list-group-item">Vestibulum at eros</li>
         </ul>
     </div>
-    <div id="fiveDay"class="card-deck row">
-        <div class="card col">
-          <img class="card-img-top" src="..." alt="Card image cap">
+    <!-- FIVE DAY FORECAST -->
+    <div id="fiveDay"class="card-deck w-75 row">
+        <div class="card col m-4">
+          
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            <h5 id="date1" class="card-title">Date</h5>
+            <p id="icon1">weather icon</p>
+            <p id="temp1"class="card-text">Temp:</p>
+            <p id="wind1"class="card-text">Wind:</p>
+            <p id="humid1">Humidity</p>
           </div>
         </div>
-        <div class="card col">
-          <img class="card-img-top" src="..." alt="Card image cap">
+        <div class="card col m-4">
+          
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            <h5 id="date2"class="card-title">Date</h5>
+            <p id="icon2">weather icon</p>
+            <p id="temp2"class="card-text">Temp:</p>
+            <p id="wind2"class="card-text">Wind:</p>
+            <p id="humid2">Humidity</p>
           </div>
         </div>
-        <div class="card col">
-          <img class="card-img-top" src="..." alt="Card image cap">
+        <div class="card col m-4">
+          
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            <h5 id="date3"class="card-title">Date</h5>
+            <p id="icon3">weather icon</p>
+            <p id="temp3"class="card-text">Temp:</p>
+            <p id="wind3"class="card-text">Wind:</p>
+            <p id="humid3">Humidity</p>
+          </div>
+        </div>
+        <div class="card col m-4">
+          
+          <div class="card-body">
+            <h5 id="date4"class="card-title">Date</h5>
+            <p id="icon4">weather icon</p>
+            <p id="temp4"class="card-text">Temp:</p>
+            <p id="wind4"class="card-text">Wind:</p>
+            <p id="humid4">Humidity</p>
+          </div>
+        </div>
+        <div class="card col m-4">
+          
+          <div class="card-body">
+            <h5 id="date5"class="card-title">Date</h5>
+            <p id="icon5">weather icon</p>
+            <p id="temp5"class="card-text">Temp:</p>
+            <p id="wind5"class="card-text">Wind:</p>
+            <p id="humid5">Humidity</p>
           </div>
         </div>
       </div>
