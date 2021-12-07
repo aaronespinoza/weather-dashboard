@@ -12,15 +12,15 @@
     
     <header class="text-center w-100 bg-info font-weight-bold">Weather Dashboard</header>
     <!-- SEARCH BAR -->
-    <div id="search"class="input-group mb-3 w-25">
+    <div class="input-group mb-3 w-25">
         <div class="input-group-prepend">
-          <button class="btn btn-outline-secondary" type="button">Search</button>
+          <button id="search"class="btn btn-outline-secondary" type="button">Search</button>
         </div>
-        <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
+        <input id="soup" type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
     </div>
     <!-- TODAYS WEATHER -->
     <div class="">
-      <div id="todayWeather"class="card w-50 m-4">
+      <div id="todayWeather"class="card w-50 d-flex justify-content-end">
           <div class="card-body ">
             <h1 id="todayCity">City and Date</h1>
             <p id="todayTemp">temp</p>
@@ -41,6 +41,7 @@
     </div>
     <!-- FIVE DAY FORECAST -->
     <div id="fiveDay"class="card-deck w-75 row">
+        <h3>5-Day Forecast:</h3>
         <div class="card col m-4">
           
           <div class="card-body">
@@ -92,9 +93,9 @@
           </div>
         </div>
       </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
