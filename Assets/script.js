@@ -30,7 +30,7 @@ function returnWeather() {
          //var link = "https://api.openweathermap.org/data/2.5/onecall?lat=" + data.coord.lat + "&lon=" + data.coord.lon + "&exclude=minutely,hourly&units=imperial&appid=" + key
          console.log(data)
          
-         //printResults(data.name,link);
+         printResults(data);
            
            
          
@@ -52,13 +52,13 @@ todayCity.textContent="";
 todayTemp.textContent="";
 todayWind.textContent="";
 todayHumidity.textContent="";
-todayUv.textContent="";
+//todayUv.textContent="";
 //Add text content
-todayCity.textContent= data.name+moment(data.dt.value).format("MMM D, YYYY");
+todayCity.textContent= data.name+moment(data.dt.value).format(" MMM D, YYYY");
 todayTemp.textContent = "Temp:" +data.main.temp + " °F";
-todayWind.textContent = "Wind" +data.wind.speed + " MPH";
-todayHumidity.textContent= "Humidity" +data.main.humidity + "%";
-todayUv.textContent= data
+todayWind.textContent = "Wind:" +data.wind.speed + " MPH";
+todayHumidity.textContent= "Humidity:" +data.main.humidity + "%";
+//todayUv.textContent= data
 }
 // todayTemp
 // todayWind
