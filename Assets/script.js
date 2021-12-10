@@ -3,6 +3,7 @@ var key="88297b00647b4e5314bdcabb6ec68ee7";
 
 searchLocation.addEventListener("click",function(){
     returnWeather()
+    fetch5()
 });
 //searchLocation.on("submit", returnWeather)
 //SEARCH RESULTS
@@ -60,10 +61,29 @@ todayWind.textContent = "Wind:" +data.wind.speed + " MPH";
 todayHumidity.textContent= "Humidity:" +data.main.humidity + "%";
 //todayUv.textContent= data
 }
-// todayTemp
-// todayWind
-// todayHumidity
-// todayUv
+
+//FETCH 5 DAY
+var fetch5= function(city){
+  var cityInput= document.querySelector("#soup").value;
+  var city= cityInput.split(' ').join('+');
+
+  var api5 = "https://api.openweathermap.org/data/2.5/forecast?q="+city+"&units=imperial&appid="+key;
+  console.log(api5);
+     fetch(api5)
+       .then(function (response) {
+         return response.json()
+       })
+       .then(function (data) {
+         
+         console.log(data)
+         
+         //print5Day(data);
+           
+           
+         
+       });
+
+}
 
 //PRINT 5 Day Forecast function
 function print5Day(data){
