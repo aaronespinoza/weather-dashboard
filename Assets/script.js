@@ -1,5 +1,8 @@
 var searchLocation=document.getElementById("search");
 var key="88297b00647b4e5314bdcabb6ec68ee7";
+var cityInput= document.querySelector("#cityInput")
+//set empty array for saved cities to go
+const cities =[];
 
 searchLocation.addEventListener("click",function(){
     returnWeather()
@@ -7,15 +10,14 @@ searchLocation.addEventListener("click",function(){
 });
 //searchLocation.on("submit", returnWeather)
 //SEARCH RESULTS
-function returnWeather() {
+function returnWeather(city) {
     //event.preventDefault()
     console.log("Doja")
     //var date= document.querySelector("#dateInput").value;
-   var cityInput= document.querySelector("#soup").value;
    //converts cities with spaces in the name to have a plus instead for url
    //var date= "2021-12-05";
    //var city= "new+york"
-   console.log(cityInput);
+   console.log(cityInput.value);
    var city= cityInput.split(' ').join('+');
    
    
@@ -31,7 +33,7 @@ function returnWeather() {
          //var link = "https://api.openweathermap.org/data/2.5/onecall?lat=" + data.coord.lat + "&lon=" + data.coord.lon + "&exclude=minutely,hourly&units=imperial&appid=" + key
          console.log(data)
          
-         printResults(data);
+         printResults(data, city);
            
            
          
@@ -101,4 +103,22 @@ function print5Day(data){
     todayUv.textContent= data
     }
 
+//Save previous city searches
+const formSumbitHandler = function(event){
+  event.preventDefault();
+  let city = cityInput.value.trim();
+  if(city){
+      getWeather(city);
+      fetch5(city);
+      cities.unshift({city});
+      cityInputEl.value = "";
+  } else{
+      alert("Please enter a City");
+  }
+  saveSearch();
+  pastSearch(city);
+}
 
+const saveSearch = function(){
+  localStorage.setItem("cities", JSON.stringify(cities));
+};
