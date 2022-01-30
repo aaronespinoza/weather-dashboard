@@ -8,37 +8,25 @@ searchLocation.addEventListener("click",function(){
     returnWeather()
     fetch5()
 });
-//searchLocation.on("submit", returnWeather)
 //SEARCH RESULTS
-function returnWeather(city) {
-    //event.preventDefault()
+function returnWeather() {
     console.log("Doja")
-    //var date= document.querySelector("#dateInput").value;
-   //converts cities with spaces in the name to have a plus instead for url
-   //var date= "2021-12-05";
-   //var city= "new+york"
-   console.log(cityInput.value);
-   var city= cityInput.split(' ').join('+');
    
-   
-     var requestUrl = "https://api.openweathermap.org/data/2.5/weather?q="+city+"&appid="+key;
-     //var requestUrl = "api.openweathermap.org/data/2.5/weather?q=atlanta&appid=88297b00647b4e5314bdcabb6ec68ee7"
+    var requestUrl = "https://api.openweathermap.org/data/2.5/weather?q="+cityInput.value + "&appid=" +key
     console.log(requestUrl);
      fetch(requestUrl)
        .then(function (response) {
          return response.json()
        })
        .then(function (data) {
-         //var random = Math.floor(Math.random()*data.events.length);
-         //var link = "https://api.openweathermap.org/data/2.5/onecall?lat=" + data.coord.lat + "&lon=" + data.coord.lon + "&exclude=minutely,hourly&units=imperial&appid=" + key
-         console.log(data)
+         console.log(data);
          
-         printResults(data, city);
+         printResults(data);
            
            
          
        });
-   }
+}
 
 //todays weather containers
 var todayCity=document.getElementById("todayCity");
@@ -65,11 +53,11 @@ todayHumidity.textContent= "Humidity:" +data.main.humidity + "%";
 }
 
 //FETCH 5 DAY
-var fetch5= function(city){
-  var cityInput= document.querySelector("#soup").value;
-  var city= cityInput.split(' ').join('+');
+var fetch5= function(){
+  
+  //var city= cityInput.split(' ').join('+');
 
-  var api5 = "https://api.openweathermap.org/data/2.5/forecast?q="+city+"&units=imperial&appid="+key;
+  var api5 = "https://api.openweathermap.org/data/2.5/forecast?q="+cityInput.value+"&units=imperial&appid="+key;
   console.log(api5);
      fetch(api5)
        .then(function (response) {
@@ -79,7 +67,7 @@ var fetch5= function(city){
          
          console.log(data)
          
-         //print5Day(data);
+         print5Day(data);
            
            
          
@@ -106,17 +94,17 @@ function print5Day(data){
 //Save previous city searches
 const formSumbitHandler = function(event){
   event.preventDefault();
-  let city = cityInput.value.trim();
-  if(city){
-      getWeather(city);
-      fetch5(city);
-      cities.unshift({city});
-      cityInputEl.value = "";
+  let citymod = cityInput.value.trim();
+  if(citymod){
+      getWeather(citymod);
+      fetch5(citymod);
+      cities.unshift({citymod});
+      cityInput.value = "";
   } else{
       alert("Please enter a City");
   }
   saveSearch();
-  pastSearch(city);
+  pastSearch(citymod);
 }
 
 const saveSearch = function(){
