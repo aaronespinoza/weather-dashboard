@@ -97,7 +97,7 @@ const pastSearch = function(pastSearch){
 const pastSearchHandler = function(event){
     let city = event.target.getAttribute("data-city")
     if(city){
-        getCityWeather(city);
+        getWeather(city);
         get5Day(city);
     }
 }
