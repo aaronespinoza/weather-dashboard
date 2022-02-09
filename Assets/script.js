@@ -10,12 +10,6 @@ const citySearchInputEl = document.querySelector("#searched-city");
 const forecastTitle = document.querySelector("#forecast");
 
 
-
-searchLocation.addEventListener("click",function(){
-    returnWeather()
-    fetch5()
-});
-
 //Taking in user input and saving search
 const formSumbitHandler = function(event){
   event.preventDefault();
@@ -36,25 +30,18 @@ const saveSearch = function(){
   localStorage.setItem("cities", JSON.stringify(cities));
 };
 
-//SEARCH RESULTS
-function returnWeather() {
-    console.log("Doja")
-   
-    var requestUrl = "https://api.openweathermap.org/data/2.5/weather?q="+cityInput.value + "&appid=" +key
-    console.log(requestUrl);
-     fetch(requestUrl)
-       .then(function (response) {
-         return response.json()
-       })
-       .then(function (data) {
-         console.log(data);
-         
-         printResults(data);
-           
-           
-         
-       });
-}
+const getWeather = function(city){//
+  let api = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${key}`
+
+  fetch(api)
+  .then(function(response){
+      response.json()
+  .then(function(data){
+          displayWeather(data, city);
+      });
+  });
+};
+
 
 //todays weather containers
 var todayCity=document.getElementById("todayCity");
