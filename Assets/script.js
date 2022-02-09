@@ -1,5 +1,4 @@
 var key="88297b00647b4e5314bdcabb6ec68ee7";
-var cityInput= document.querySelector("#cityInput")
 //set empty array for saved cities to go
 const cities =[];
 const citySubmitEl=document.querySelector("#city-submit");
@@ -8,7 +7,7 @@ const forecastContainerEl = document.querySelector("#fiveday-container");
 const pastSearchButtonEl = document.querySelector("#past-search-buttons");
 const citySearchInputEl = document.querySelector("#searched-city");
 const forecastTitle = document.querySelector("#forecast");
-
+const cityInputEl=document.querySelector("#city");
 
 //Taking in user input and saving search
 const formSumbitHandler = function(event){
@@ -25,10 +24,6 @@ const formSumbitHandler = function(event){
   saveSearch();
   pastSearch(city);
 }
-
-const saveSearch = function(){
-  localStorage.setItem("cities", JSON.stringify(cities));
-};
 
 const getWeather = function(city){//
   let api = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${key}`
@@ -87,21 +82,6 @@ const displayWeather = function(weather, searchCity){//
 
 
 
-//Save previous city searches
-const formSumbitHandler = function(event){
-  event.preventDefault();
-  let citymod = cityInput.value.trim();
-  if(citymod){
-      getWeather(citymod);
-      fetch5(citymod);
-      cities.unshift({citymod});
-      cityInput.value = "";
-  } else{
-      alert("Please enter a City");
-  }
-  saveSearch();
-  pastSearch(citymod);
-}
 
 const pastSearch = function(pastSearch){
 
@@ -216,3 +196,6 @@ const getUvIndex = function(lat,lon){
       });
   });
 }
+
+citySubmitEl.addEventListener("submit", formSumbitHandler);
+pastSearchButtonEl.addEventListener("click", pastSearchHandler);
