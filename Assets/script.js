@@ -42,32 +42,49 @@ const getWeather = function(city){//
   });
 };
 
+//displaying today's weather
 
+const displayWeather = function(weather, searchCity){//
+  //clear old content
+  weatherContainerEl.textContent= "";  //
+  citySearchInputEl.textContent=searchCity;//
 
+  //Date with moment
+  let currentDate = document.createElement("span")//
+  currentDate.textContent=" (" + moment(weather.dt.value).format("MMM D, YYYY") + ") ";//
+  citySearchInputEl.appendChild(currentDate);//
 
-//todays weather containers
-var todayCity=document.getElementById("todayCity");
-var todayTemp=document.getElementById("todayTemp");
-var todayWind=document.getElementById("todayWind");
-var todayHumidity=document.getElementById("todayHumidity");
-var todayUv=document.getElementById("todayUv");
+  //Icon images
+  let weatherIcon = document.createElement("img")//
+  weatherIcon.setAttribute("src", `https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`);//
+  citySearchInputEl.appendChild(weatherIcon);//
 
+  //Temp data
+  let temperatureEl = document.createElement("span");
+  temperatureEl.textContent = "Temperature: " + weather.main.temp + " °F";
+  temperatureEl.classList = "list-group-item"
 
-//PRINT Today's Results function
-function printResults(data){
-//erase previous results
-todayCity.textContent="";
-todayTemp.textContent="";
-todayWind.textContent="";
-todayHumidity.textContent="";
-//todayUv.textContent="";
-//Add text content
-todayCity.textContent= data.name+moment(data.dt.value).format(" MMM D, YYYY");
-todayTemp.textContent = "Temp:" +data.main.temp + " °F";
-todayWind.textContent = "Wind:" +data.wind.speed + " MPH";
-todayHumidity.textContent= "Humidity:" +data.main.humidity + "%";
-//todayUv.textContent= data
+  //Humidity data
+  let humidityEl = document.createElement("span");
+  humidityEl.textContent = "Humidity: " + weather.main.humidity + " %";
+  humidityEl.classList = "list-group-item"
+
+  //Wind data
+  let windEl = document.createElement("span");
+  windEl.textContent = "Wind Speed: " + weather.wind.speed + " MPH";
+  windEl.classList = "list-group-item"
+
+  //Appending all to the containers
+  weatherContainerEl.appendChild(temperatureEl);
+  weatherContainerEl.appendChild(humidityEl);
+  weatherContainerEl.appendChild(windEl);
+
+  let lat = weather.coord.lat;
+  let lon = weather.coord.lon;
+  getUvIndex(lat,lon)
 }
+
+
 
 
 //Save previous city searches
