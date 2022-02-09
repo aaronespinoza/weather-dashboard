@@ -43,6 +43,8 @@ const getWeather = function(city){//
 };
 
 
+
+
 //todays weather containers
 var todayCity=document.getElementById("todayCity");
 var todayTemp=document.getElementById("todayTemp");
@@ -67,44 +69,6 @@ todayHumidity.textContent= "Humidity:" +data.main.humidity + "%";
 //todayUv.textContent= data
 }
 
-//FETCH 5 DAY
-var fetch5= function(){
-  
-  //var city= cityInput.split(' ').join('+');
-
-  var api5 = "https://api.openweathermap.org/data/2.5/forecast?q="+cityInput.value+"&units=imperial&appid="+key;
-  console.log(api5);
-     fetch(api5)
-       .then(function (response) {
-         return response.json()
-       })
-       .then(function (data) {
-         
-         console.log(data)
-         
-         print5Day(data);
-           
-           
-         
-       });
-
-}
-
-//PRINT 5 Day Forecast function
-function print5Day(data){
-    //erase previous results
-    todayCity.textContent="";
-    todayTemp.textContent="";
-    todayWind.textContent="";
-    todayHumidity.textContent="";
-    todayUv.textContent="";
-    //Add text content
-    todayCity.textContent= data.name+moment(data.dt.value).format("MMM D, YYYY");
-    todayTemp.textContent = "Temp:" +data.main.temp + " °F";
-    todayWind.textContent = "Wind" +data.wind.speed + " MPH";
-    todayHumidity.textContent= "Humidity" +data.main.humidity + "%";
-    todayUv.textContent= data
-    }
 
 //Save previous city searches
 const formSumbitHandler = function(event){
@@ -147,6 +111,60 @@ const saveSearch = function(){
 
 //
 
+//Fetching the 5 day forecast
+const get5Day = function(city){
+  let api = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${key}`
+
+  fetch(api)
+  .then(function(response){
+      response.json()
+  .then(function(data){
+         display5Day(data);
+      });
+  });
+};
+
+//Displaying the 5 day forecast
+const display5Day = function(weather){
+  forecastContainerEl.textContent = ""
+  forecastTitle.textContent = "5 Day Forecast:";
+
+  let forecast = weather.list;
+      for(var i=5; i < forecast.length; i=i+8){
+     let dailyForecast = forecast[i];
+      
+     
+     let forecastEl=document.createElement("div");
+     forecastEl.classList = "card bg-primary text-light m-2";
+
+     let forecastDate = document.createElement("h5")
+     forecastDate.textContent= moment.unix(dailyForecast.dt).format("MMM D, YYYY");
+     forecastDate.classList = "card-header text-center"
+     forecastEl.appendChild(forecastDate);
+
+     let weatherIcon = document.createElement("img")
+     weatherIcon.classList = "card-body text-center";
+     weatherIcon.setAttribute("src", `https://openweathermap.org/img/wn/${dailyForecast.weather[0].icon}@2x.png`);  
+
+     forecastEl.appendChild(weatherIcon);
+     
+     let forecastTempEl=document.createElement("span");
+     forecastTempEl.classList = "card-body text-center";
+     forecastTempEl.textContent = dailyForecast.main.temp + " °F";
+
+      forecastEl.appendChild(forecastTempEl);
+
+     let forecastHumEl=document.createElement("span");
+     forecastHumEl.classList = "card-body text-center";
+     forecastHumEl.textContent = dailyForecast.main.humidity + "  %";
+
+      forecastEl.appendChild(forecastHumEl);
+
+      forecastContainerEl.appendChild(forecastEl);
+  }
+
+};
+
 //Display for the UV and attaching the classes of color for weather conditions
 const displayUvIndex = function(index){
   let uvIndexEl = document.createElement("div");
@@ -171,7 +189,7 @@ const displayUvIndex = function(index){
 
 //fetching the UV
 const getUvIndex = function(lat,lon){
-  let apiURL = `https://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${lat}&lon=${lon}`
+  let apiURL = `https://api.openweathermap.org/data/2.5/uvi?appid=${key}&lat=${lat}&lon=${lon}`
 
   fetch(apiURL)
   .then(function(response){

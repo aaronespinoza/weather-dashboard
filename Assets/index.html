@@ -12,90 +12,30 @@
     
     <header class="text-center w-100 bg-info font-weight-bold">Weather Dashboard</header>
     <!-- SEARCH BAR -->
-    <div class="row">
-      <div class="col-4">
-    <div class="input-group mb-3 ">
-        <div class="input-group-prepend">
-          <button id="search"class="btn btn-outline-secondary" type="button">Search</button>
-        </div>
-        <input id="cityInput" type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
-    </div>
-    <!-- SEARCH HISTORY LIST -->
-    <div id="cityHistory"class="card  text-center" >
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">Cras justo odio</li>
-        <li class="list-group-item">Dapibus ac facilisis in</li>
-        <li class="list-group-item">Vestibulum at eros</li>
-      </ul>
-  </div>
-    <!-- TODAYS WEATHER -->
-  </div>
-      <div id="todayWeather"class="card  col-8">
-          <div class="card-body ">
-            <h1 id="todayCity">City and Date</h1>
-            <p id="todayTemp">temp</p>
-            <p id="todayWind">Wind</p>
-            <p id="todayHumidity">humidity</p>
-            <p id="todayUv">uv index</p>
-          
-          </div>
+    <main class="container-fluid">
+      <div class = "row">
+          <nav class="col-12 col-md-3 p-2 search-column">
+              <form class="form-inline" id = "city-submit">
+                  <h4>Search for a City</h2>
+                  <input id="city" type = "text" autofocus="true" class="form-control mr-sm-2 form-input" type="search" placeholder="Search for a City" aria-label="Search">
+                  <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+              </form>
+              <div class = "past-search border" id = "past-search-buttons"></div>
+          </nav>
+          <section class="col-12 col-md-9">
+              <div class = "row border selected-city" id = "current-forecast">
+                  <div class = "col-12">
+                      <h2 id="searched-city"></h2>
+                      <div id = "current-weather-container" class = "list-group"></div>
+                  </div>  
+              </div>
+              <div class = "row border" id = "five-day-forecast">
+                      <h2 class= "col-12" id = "forecast"></h2>
+                      <div class = "d-flex" id = "fiveday-container"></div>
+              </div>  
+          </section>
       </div>
-    </div>
-   
-    <!-- FIVE DAY FORECAST -->
-    <div id="fiveDay"class="card-deck w-75 row">
-        <h3>5-Day Forecast:</h3>
-        <div class="card col m-4">
-          
-          <div class="card-body">
-            <h5 id="date1" class="card-title">Date</h5>
-            <p id="icon1">weather icon</p>
-            <p id="temp1"class="card-text">Temp:</p>
-            <p id="wind1"class="card-text">Wind:</p>
-            <p id="humid1">Humidity</p>
-          </div>
-        </div>
-        <div class="card col m-4">
-          
-          <div class="card-body">
-            <h5 id="date2"class="card-title">Date</h5>
-            <p id="icon2">weather icon</p>
-            <p id="temp2"class="card-text">Temp:</p>
-            <p id="wind2"class="card-text">Wind:</p>
-            <p id="humid2">Humidity</p>
-          </div>
-        </div>
-        <div class="card col m-4">
-          
-          <div class="card-body">
-            <h5 id="date3"class="card-title">Date</h5>
-            <p id="icon3">weather icon</p>
-            <p id="temp3"class="card-text">Temp:</p>
-            <p id="wind3"class="card-text">Wind:</p>
-            <p id="humid3">Humidity</p>
-          </div>
-        </div>
-        <div class="card col m-4">
-          
-          <div class="card-body">
-            <h5 id="date4"class="card-title">Date</h5>
-            <p id="icon4">weather icon</p>
-            <p id="temp4"class="card-text">Temp:</p>
-            <p id="wind4"class="card-text">Wind:</p>
-            <p id="humid4">Humidity</p>
-          </div>
-        </div>
-        <div class="card col m-4">
-          
-          <div class="card-body">
-            <h5 id="date5"class="card-title">Date</h5>
-            <p id="icon5">weather icon</p>
-            <p id="temp5"class="card-text">Temp:</p>
-            <p id="wind5"class="card-text">Wind:</p>
-            <p id="humid5">Humidity</p>
-          </div>
-        </div>
-      </div>
+  </main>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
