@@ -1,13 +1,41 @@
-var searchLocation=document.getElementById("search");
 var key="88297b00647b4e5314bdcabb6ec68ee7";
 var cityInput= document.querySelector("#cityInput")
 //set empty array for saved cities to go
 const cities =[];
+const citySubmitEl=document.querySelector("#city-submit");
+const weatherContainerEl=document.querySelector("#current-weather-container");
+const forecastContainerEl = document.querySelector("#fiveday-container");
+const pastSearchButtonEl = document.querySelector("#past-search-buttons");
+const citySearchInputEl = document.querySelector("#searched-city");
+const forecastTitle = document.querySelector("#forecast");
+
+
 
 searchLocation.addEventListener("click",function(){
     returnWeather()
     fetch5()
 });
+
+//Taking in user input and saving search
+const formSumbitHandler = function(event){
+  event.preventDefault();
+  let city = cityInputEl.value.trim();
+  if(city){
+      getWeather(city);
+      get5Day(city);
+      cities.unshift({city});
+      cityInputEl.value = "";
+  } else{
+      alert("Please enter a City");
+  }
+  saveSearch();
+  pastSearch(city);
+}
+
+const saveSearch = function(){
+  localStorage.setItem("cities", JSON.stringify(cities));
+};
+
 //SEARCH RESULTS
 function returnWeather() {
     console.log("Doja")
@@ -129,6 +157,8 @@ const pastSearchHandler = function(event){
 const saveSearch = function(){
   localStorage.setItem("cities", JSON.stringify(cities));
 };
+
+//
 
 //Display for the UV and attaching the classes of color for weather conditions
 const displayUvIndex = function(index){
