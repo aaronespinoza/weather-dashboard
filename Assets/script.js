@@ -107,6 +107,60 @@ const formSumbitHandler = function(event){
   pastSearch(citymod);
 }
 
+const pastSearch = function(pastSearch){
+
+  pastSearchEl = document.createElement("button");
+  pastSearchEl.textContent = pastSearch;
+  pastSearchEl.classList = "d-flex w-100 btn-light border p-2";
+  pastSearchEl.setAttribute("data-city",pastSearch);
+  pastSearchEl.setAttribute("type", "submit");
+
+  pastSearchButtonEl.prepend(pastSearchEl);
+}
+
+const pastSearchHandler = function(event){
+    let city = event.target.getAttribute("data-city")
+    if(city){
+        getCityWeather(city);
+        get5Day(city);
+    }
+}
+
 const saveSearch = function(){
   localStorage.setItem("cities", JSON.stringify(cities));
 };
+
+//Display for the UV and attaching the classes of color for weather conditions
+const displayUvIndex = function(index){
+  let uvIndexEl = document.createElement("div");
+  uvIndexEl.textContent = "UV Index: "
+  uvIndexEl.classList = "list-group-item"
+
+  uvIndexValue = document.createElement("span")
+  uvIndexValue.textContent = index.value
+
+  if(index.value <=2){
+      uvIndexValue.classList = "favorable"
+  }else if(index.value >2 && index.value<=8){
+      uvIndexValue.classList = "moderate "
+  }
+  else if(index.value >8){
+      uvIndexValue.classList = "severe"
+  };
+
+  uvIndexEl.appendChild(uvIndexValue);
+  weatherContainerEl.appendChild(uvIndexEl);
+}
+
+//fetching the UV
+const getUvIndex = function(lat,lon){
+  let apiURL = `https://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${lat}&lon=${lon}`
+
+  fetch(apiURL)
+  .then(function(response){
+      response.json()
+  .then(function(data){
+          displayUvIndex(data)
+      });
+  });
+}
